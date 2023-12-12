@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/leelajosnakona/Leela/GitHub/US_Covid_vaccine_stats/lib/')
+sys.path.append('/Users/leelajosnakona/Leela/GitHub/US_Covid19_vaccine_stats/lib')
 from functions import load_data, date_filter, sidebar_filters, county_map, county_rank, ageGender_chart, race_chart
 
 import streamlit as st
