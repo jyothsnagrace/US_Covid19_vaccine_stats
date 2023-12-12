@@ -16,15 +16,15 @@ You can try [here](https://uscovid19vaccine-stats.streamlit.app/).
 * Basic options for users to choose
   * Dataset Date Period
   * US State and County Multiselect Filters
-* US State Reports:
- * Display a Covid 19 Vaccination statistics for selected area (US or for specific State or County)
- * Draw a Rank Chart with the same selection (state-level or County-level comparisons)
-* NC Reports:
- * Draw a Violin Plot of Total Vaccination Count accross Age-Group and Gender
- * Draw a Bump Chart by Race over Time
- * Draw a Pie Chart by Ethnicity
-
-
+  * Reads and updates Filter values usng Session State
+  * A Home page and Multipage app to categorize the dataset at different hierarchy
+     * US State Reports:
+       * Display a Covid 19 Vaccination statistics for selected area (US or for specific State or County)
+       * Draw a Rank Chart with the same selection (state-level or County-level comparisons)
+     * NC Reports:
+       * Draw a Violin Plot of Total Vaccination Count accross Age-Group and Gender
+       * Draw a Bump Chart by Race over Time
+       * Draw a Pie Chart by Ethnicity
 
 ## Data sources and helpful resources
 * Vaccinations data source
@@ -49,6 +49,8 @@ You can try [here](https://uscovid19vaccine-stats.streamlit.app/).
 ## Selected modules used
   * [Altair](http://altair-viz.github.io/): Altair chart module used to draw Geoshape Map and other charts like Bump, Pie, Rank  (`streamlit.altair_chart`)
   * [Plotly](https://plotly.com/): Plotly chart module used to draw Violin Plot, (`streamlit.plotly_chart`)
+  * [Multipage app](https://docs.streamlit.io/library/get-started/multipage-apps)
+  * [Session State](https://docs.streamlit.io/library/api-reference/session-state)
 
 
 ## Snapshots
