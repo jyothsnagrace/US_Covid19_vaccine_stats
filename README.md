@@ -1,47 +1,54 @@
 
 # US COVID-19 Vaccination Statistics
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uscovidvaccine-stats.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uscovid19vaccine-stats.streamlit.app/)
 
 
 ## Author
 
-Leela Josna Kona 
-- [Tableau Public Profile](https://public.tableau.com/app/profile/lkona)
+Leela Josna Kona
 - [LinkedIn](https://www.linkedin.com/in/lkona/)
 
 
 Interactive Dashboard of COVID-19 infections and vaccinations employing [Streamlit](https://www.streamlit.io) module .
-You can try [here](https://uscovidvaccine-stats.streamlit.app/).
+You can try [here](https://uscovid19vaccine-stats.streamlit.app/).
 
 ## Primary objectives
 * Basic options for users to choose
-  * Cumulative or daily changes measures
-  * Global aggregate stat or per-country information
-* Display a basic statistics for selected area (Global or for specific country)
-* Draw a heatmap detailing given a region and measure (e.g., Daily confirmed patients increases in the US)
-* Draw a Choropleth with the same selection (Country-level or state-level comparisons)
+  * Dataset Date Period
+  * US State and County Multiselect Filters
+* US State Reports:
+ * Display a Covid 19 Vaccination statistics for selected area (US or for specific State or County)
+ * Draw a Rank Chart with the same selection (state-level or County-level comparisons)
+* NC Reports:
+ * Draw a Violin Plot of Total Vaccination Count accross Age-Group and Gender
+ * Draw a Bump Chart by Race over Time
+ * Draw a Pie Chart by Ethnicity
 
 
 
 ## Data sources and helpful resources
 * Vaccinations data source
-  * [Johns Hopkins University GoVex GitHub](https://github.com/govex/COVID-19): Global nCov-19 vaccinations (+ infections) dataset
-* Geographic data 
-  * [NaturalEarth](http://naturalearthdata.com/): Geographical shapedata for countries (admin0) and states-level (admin1) data to be used (1:10m data is used for selected countries for states details while 1:50m used for others)
+  * [Centers for Disease Control and Prevention (CDC)](https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data-with-Ge/n8mc-b4w4/about_data): COVID-19 Case Surveillance Public Use Data with Geography dataset
+* Geographic data
+  * [Altair Vega_Datasets]([http://naturalearthdata.com/](https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/us-10m.json#)): Geographical shapedata for states and counties
+  * counties <- alt$topo_feature(vega_data$us_10m$url, "counties")
+  * states <- alt$topo_feature(vega_data$us_10m$url, "states")
 
 ## Descriptions of objects
-* Heatmap
-  * Two separate charts are drawn (Infections: confirmed, casualties / Vaccinations: administered, fully vaccinated)
-  * Regions on y-axis are pre-sorted by the figures (ordered in a descending manner for top-25 disricts)
-* Barplot (Vaccinations-only)
-  * For countries which don't provide province/state-level data, single stacked barplot with both measures are drawn (administered and fully vaccinated)
-* Choropleth
-  * Two measures are drawn on a single choropleth (Color depths: confirmed / administered, Elevations: casualties / fully vaccinated)
-  * One measure is shown by the color depth while the other is represented by elevations of the regions
-  
+* Geoshape Map
+  * US states and counties map are drawn (Total number of vaccinated)
+* Top Ranked Barplot
+  * States on y-axis are pre-sorted by the Total vaccinated and displayed counties as stacked
+* Violin Plot
+  * For North Carolina State and its selected counties by Age-Group and Gender
+* Bump Chart
+  * For North Carolina State and its selected counties by Race over Time
+* Pie
+  * For North Carolina State and its selected counties by Ethnicity
+    
 ## Selected modules used
-  * [Altair](http://altair-viz.github.io/): Altair chart module used to draw heatmap (`streamlit.altair_chart`)
-  * [Pydeck](http://pydeck.gl/): Pydeck mapping module used to draw Choropleth/PolygonLayer (`streamlit.pydeck_chart`)
+  * [Altair](http://altair-viz.github.io/): Altair chart module used to draw Geoshape Map and other charts like Bump, Pie, Rank  (`streamlit.altair_chart`)
+  * [Plotly](https://plotly.com/): Plotly chart module used to draw Violin Plot, (`streamlit.plotly_chart`)
 
 
 ## Snapshots
