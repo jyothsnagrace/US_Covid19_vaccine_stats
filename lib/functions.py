@@ -54,21 +54,16 @@ def ageGender_chart(df):
 def ethnicity_chart(df):
     base = alt.Chart(df).mark_arc(innerRadius=50).encode(
         theta="Total",
-        color="ethnicity:N")
+        color=alt.Color("ethnicity:N", title="Ethnicity"))
         
     st.altair_chart(base, use_container_width=True, theme="streamlit")
 
 def race_chart(df):
-    barh = alt.Chart(df).mark_bar().encode(
-        alt.X('Total').stack("normalize"),
-        alt.Y('race:O').axis().title('Race'),
-        color='ethnicity:N'
-    )
 
     fig = alt.Chart(df).mark_line(point=True).encode(
         x=alt.X("case_month:O").timeUnit("yearmonth").title("Month Year"),
         y="Total:O",
-        color=alt.Color("race:N")
+        color=alt.Color("race:N", title="Race")
     ).transform_window(
         rank="rank()",
         sort=[alt.SortField("Total", order="descending")],
@@ -77,6 +72,8 @@ def race_chart(df):
         # title="Bump Chart for Stock Prices",
         width=600,
         height=700,
+    ).configure_point(
+    size=150
     )
 
     st.altair_chart(fig, use_container_width=True, theme="streamlit")
