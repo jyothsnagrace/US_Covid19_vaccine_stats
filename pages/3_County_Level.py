@@ -1,6 +1,5 @@
-# import sys
-# sys.path.append('/Users/leelajosnakona/Leela/GitHub/US_Covid_vaccine_stats/lib/')
-from lib.functions import load_data, date_filter, sidebar_filters, ethnicity_chart, ageGender_chart, race_chart, sidebar_filters2
+
+from lib.functions import load_data, date_filter, sidebar_filters, ethnicity_chart, ageGender_chart, race_chart, sidebar_filters2, session_assign, page_config
 
 import streamlit as st
 import pandas as pd
@@ -11,33 +10,21 @@ from vega_datasets import data
 from datetime import date, timedelta
 
 
-APP_TITLE = 'COVID-19 Vaccinations in the United States'
-APP_SUB_TITLE = 'Source: COVID-19 Case Surveillance Public Use Data with Geography'
-
-
 def main():
 
     ### Page Config
-    st.set_page_config(page_title=APP_TITLE, page_icon=":mask", layout="wide")
-    st.title(f":microbe: {APP_TITLE} :mask:")
-    st.caption(APP_SUB_TITLE)
-    st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
-
-    
-    # "st.session_state object:", st.session_state
+    page_config()
 
 
     ### Load Data
     df = load_data()
+    
+    
+    st.write("Dataset Dimensionality (Shape): ", df.shape)
+
+    #Display Filters and Map
     df, date1, date2 = date_filter(df)
-    
-    # if 'my_df' in st.session_state:
-    #     filtered_df =  st.session_state['my_df']  
-
-    
     filtered_df, state, county = sidebar_filters2(df)
-
-
 
 
     filtered_df2 = filtered_df.fillna('Other')
@@ -66,11 +53,20 @@ def main():
 
     ### session_state
 
-    st.session_state['my_df'] = filtered_df
-    st.session_state["my_date1"] = date1
-    st.session_state["my_date2"] = date2
+    session_assign(filtered_df, date1, date2, state, county)
+
+    # "st.session_state object:", st.session_state
     
-    # st.write(st.session_state["my_df"])
+    tab1, tab2 = st.tabs(["Session State filters", "Session df"])
+    with tab1:
+        st.write("Start Date: ", st.session_state["my_date1"]) 
+        st.write("End Date: ", st.session_state["my_date2"]) 
+        st.write("State : ", st.session_state["my_state"]) 
+        st.write("County: ", st.session_state["my_county"]) 
+    with tab2:
+        st.write("df: ", st.session_state["my_df"]) 
+
+
 
 if __name__ == "__main__":
     main()

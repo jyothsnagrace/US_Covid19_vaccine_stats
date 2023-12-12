@@ -8,6 +8,26 @@ from datetime import date, timedelta
 import plotly.graph_objects as go
 
 
+
+def page_config():
+    APP_TITLE = 'COVID-19 Vaccinations in the United States'
+    APP_SUB_TITLE = 'Source: COVID-19 Case Surveillance Public Use Data with Geography for Period between 2020/01/01 and 2022/12/01'
+    APP_SUB_TITLE2 = 'Date Range: 2020/01/01 to 2022/12/01'
+
+    st.set_page_config(page_title=APP_TITLE, page_icon=":mask", layout="wide")
+    st.title(f":microbe: {APP_TITLE} :mask:")
+    st.caption(APP_SUB_TITLE)
+    st.caption(APP_SUB_TITLE2)
+    st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
+
+
+def session_assign(filtered_df, date1, date2, state, county):
+    st.session_state['my_df'] = filtered_df
+    st.session_state["my_date1"] = date1
+    st.session_state["my_date2"] = date2
+    st.session_state["my_state"] = state
+    st.session_state["my_county"] = county
+
 def ageGender_chart(df):
     fig = go.Figure()
     fig.add_trace(go.Violin(x=df['age_group'][ df['gender'] == 'Male' ],
@@ -138,27 +158,38 @@ def date_filter(df):
 
     if "my_date1" in st.session_state:
         if "my_date2" in st.session_state:
-            date_1 = st.session_state["my_date1"]
-            date_2 = st.session_state["my_date2"]
+            startDate = st.session_state["my_date1"]
+            endDate = st.session_state["my_date2"]
 
     if "my_date1" not in st.session_state:
         if "my_date2" not in st.session_state:
-            date_1 = pd.to_datetime('2021-01-01')
-            date_2 = pd.to_datetime('2021-12-31')
+            startDate = pd.to_datetime('2021/01/01')
+            endDate = pd.to_datetime('2021/05/31')
 
     with col1:
-        date1 = pd.to_datetime(st.date_input("Start Date", date_1))
+        date1 = pd.to_datetime(st.date_input("Start Date", startDate))
     with col2:
-        date2 = pd.to_datetime(st.date_input("End Date", date_2))
+        date2 = pd.to_datetime(st.date_input("End Date", endDate))
 
     df = df[(df["case_month"] >= date1) & (df["case_month"] <= date2)].copy()
     return(df, date1, date2)
 
 def sidebar_filters(df):
 
+    # if "my_state" in st.session_state:
+    #     if "my_county" in st.session_state:
+    #         stated = st.session_state["my_state"]
+    #         countyd = st.session_state["my_county"]
+
+    # if "my_state" not in st.session_state:
+    #     if "my_county" not in st.session_state:
+    #         stated = df.sort_values(by="res_state").res_state.unique()
+    #         countyd = df.sort_values(by="res_county").res_county.unique()
+
     st.sidebar.header("Choose your filter:")
-    state = st.sidebar.multiselect("Pick your State", options=df.sort_values(by="res_state").res_state.unique())#, default=st.session_state["my_state"])
-    
+
+    state = st.sidebar.multiselect("Pick your State", options=df.sort_values(by="res_state").res_state.unique())
+
     if not state:
         df2 = df.copy()
     else:
