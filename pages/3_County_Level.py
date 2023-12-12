@@ -1,6 +1,6 @@
-import sys
-sys.path.append('/Users/leelajosnakona/Leela/GitHub/US_Covid_vaccine_stats/lib/')
-from functions import load_data, date_filter, sidebar_filters, ethnicity_chart, ageGender_chart, race_chart, sidebar_filters2
+# import sys
+# sys.path.append('/Users/leelajosnakona/Leela/GitHub/US_Covid_vaccine_stats/lib/')
+from lib.functions import load_data, date_filter, sidebar_filters, ethnicity_chart, ageGender_chart, race_chart, sidebar_filters2
 
 import streamlit as st
 import pandas as pd

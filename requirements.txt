@@ -1,3 +1,7 @@
 streamlit
 altair
 functions
+plotly
+altair
+matplotlib
+vega_datasets
