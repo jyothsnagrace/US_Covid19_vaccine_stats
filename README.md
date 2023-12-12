@@ -9,7 +9,9 @@ Leela Josna Kona
 - [LinkedIn](https://www.linkedin.com/in/lkona/)
 
 
-Interactive Dashboard of COVID-19 infections and vaccinations employing [Streamlit](https://www.streamlit.io) module .
+
+
+An Interactive Streamlit App Dashboard to visualize and analyze USA Covid-19 Vaccination stats [Streamlit](https://www.streamlit.io) module .
 You can try [here](https://uscovid19vaccine-stats.streamlit.app/).
 
 ## Primary objectives
@@ -47,6 +49,7 @@ You can try [here](https://uscovid19vaccine-stats.streamlit.app/).
   * For North Carolina State and its selected counties by Ethnicity
     
 ## Selected modules used
+  * [Streamlit](https://www.streamlit.io)
   * [Altair](http://altair-viz.github.io/): Altair chart module used to draw Geoshape Map and other charts like Bump, Pie, Rank  (`streamlit.altair_chart`)
   * [Plotly](https://plotly.com/): Plotly chart module used to draw Violin Plot, (`streamlit.plotly_chart`)
   * [Multipage app](https://docs.streamlit.io/library/get-started/multipage-apps)
