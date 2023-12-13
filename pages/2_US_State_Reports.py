@@ -44,7 +44,7 @@ def main():
         
 
     with col2:
-        st.subheader(f" Top Ranked States ")
+        st.subheader(f" Top Ranked States {state)")
         county_rank(stateCounty_count)
 
 
