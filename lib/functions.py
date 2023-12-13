@@ -59,7 +59,7 @@ def ethnicity_chart(df):
     )
     
     pie = base.mark_arc(outerRadius=120)
-    text = base.mark_text(radius=160, size=20).encode(text="ethnicity:N")
+    text = base.mark_text(radius=160, size=20).encode(text="Total:Q")
 
     st.altair_chart(pie + text, use_container_width=True, theme="streamlit")
 
