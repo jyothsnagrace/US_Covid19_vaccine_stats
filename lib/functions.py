@@ -171,9 +171,9 @@ def date_filter(df):
                 endDate = pd.to_datetime('2021/05/31')
 
         with col1:
-            date1 = pd.to_datetime(st.date_input("Start Date", startDate))
+            date1 = pd.to_datetime(st.date_input("**Start Date**", startDate))
         with col2:
-            date2 = pd.to_datetime(st.date_input("End Date", endDate))
+            date2 = pd.to_datetime(st.date_input("**End Date**", endDate))
 
         df = df[(df["case_month"] >= date1) & (df["case_month"] <= date2)].copy()
     return(df, date1, date2)
@@ -192,14 +192,14 @@ def sidebar_filters(df):
 
     st.sidebar.header("Choose your filter:")
 
-    state = st.sidebar.multiselect("Pick your State", options=df.sort_values(by="res_state").res_state.unique())
+    state = st.sidebar.multiselect("**Pick your State**", options=df.sort_values(by="res_state").res_state.unique())
 
     if not state:
         df2 = df.copy()
     else:
         df2 = df[df["res_state"].isin(state)]
 
-    county = st.sidebar.multiselect("Pick your County", options=df2.sort_values(by="res_county").res_county.unique())#, default=st.session_state["my_county"])
+    county = st.sidebar.multiselect("**Pick your County**", options=df2.sort_values(by="res_county").res_county.unique())#, default=st.session_state["my_county"])
 
     if not county:
         df3 = df2.copy()
@@ -257,14 +257,14 @@ def session_values():
 def sidebar_filters2(df):
 
     st.sidebar.header("Choose your filter:")
-    state = st.sidebar.multiselect("Pick your State", options=df.sort_values(by="res_state").res_state.unique(), default='NC')
+    state = st.sidebar.multiselect("**Pick your State**", options=df.sort_values(by="res_state").res_state.unique(), default='NC')
     
     if not state:
         df2 = df.copy()
     else:
         df2 = df[df["res_state"].isin(state)]
 
-    county = st.sidebar.multiselect("Pick your County", options=df2.sort_values(by="res_county").res_county.unique(), default='MECKLENBURG')
+    county = st.sidebar.multiselect("**Pick your County**", options=df2.sort_values(by="res_county").res_county.unique(), default='MECKLENBURG')
 
     if not county:
         df3 = df2.copy()

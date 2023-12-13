@@ -24,7 +24,7 @@ def main():
     df = df.dropna(subset=['res_state', 'res_county'])
     df = df.reset_index(drop=True)
 
-    st.write("Dataset Dimensionality (Shape): ", df.shape)
+    st.write("Dataset Shape: ", df.shape)
 
     #Display Filters and Map
     df, date1, date2 = date_filter(df)
