@@ -108,7 +108,7 @@ def county_map(df, df2):
     alt.data_transformers.disable_max_rows()
     
     foreground = alt.Chart(counties).mark_geoshape().encode(
-        color=alt.Color('Total:Q', scale=alt.Scale(domain=[0, max], scheme="lighttealblue")),
+        color=alt.Color('Total:Q', scale=alt.Scale(domain=[0, max], scheme="lighttealblue"),title='# of Vaccinations'),
         # color=alt.Color('Total:Q', title='# of Vaccinations'),
         # color=alt.value('steelblue'),
         tooltip=['res_state:N', 'res_county:N', 'Total:Q'] 
