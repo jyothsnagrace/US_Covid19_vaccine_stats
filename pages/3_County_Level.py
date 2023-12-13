@@ -15,7 +15,9 @@ def main():
     ### Page Config
     page_config()
 
-
+    with open('lib/style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    
     ### Load Data
     df = load_data()
     
@@ -38,6 +40,7 @@ def main():
     # st.write(stateCounty_count.shape)
 
     tab1, tab2, tab3 = st.tabs(["Violin Plot", "Bump Chart", "Pie Chart"])
+    
 
     with tab1:
         st.subheader(f"Violin Plot by Age and Gender")
@@ -48,7 +51,7 @@ def main():
         race_chart(race_ct)
 
     with tab3:
-        st.subheader("Pie Chart by ethnicity")
+        st.subheader("Pie Chart by Ethnicity")
         ethnicity_chart(ethnicity_ct)
 
     ### session_state

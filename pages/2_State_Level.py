@@ -16,6 +16,9 @@ def main():
     ### Page Config
     page_config()
 
+    with open('lib/style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
     ### Load Data
     df = load_data()
     df = df.dropna(subset=['res_state', 'res_county'])
@@ -53,7 +56,7 @@ def main():
 
 
     tab1, tab2 = st.tabs(["Session State filters", "Session df"])
-        
+    
     with tab1:
         st.write("Start Date: ", st.session_state["my_date1"]) 
         st.write("End Date: ", st.session_state["my_date2"]) 

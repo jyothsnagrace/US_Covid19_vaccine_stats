@@ -19,7 +19,8 @@ def page_config():
     st.caption(APP_SUB_TITLE)
     st.caption(APP_SUB_TITLE2)
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
-
+  
+    
 
 def session_assign(filtered_df, date1, date2, state, county):
     st.session_state['my_df'] = filtered_df
@@ -33,17 +34,17 @@ def ageGender_chart(df):
     fig.add_trace(go.Violin(x=df['age_group'][ df['gender'] == 'Male' ],
                         y=df['Total'][ df['gender'] == 'Male' ],
                         legendgroup='M', scalegroup='M', name='M',
-                        line_color='blue')
+                        line_color='teal')
              )
     fig.add_trace(go.Violin(x=df['age_group'][ df['gender'] == 'Female' ],
                         y=df['Total'][ df['gender'] == 'Female' ],
                         legendgroup='F', scalegroup='F', name='F',
-                        line_color='orange')
+                        line_color='lightblue')
              )
     fig.add_trace(go.Violin(x=df['age_group'][ df['gender'] == 'Other' ],
                         y=df['Total'][ df['gender'] == 'Other' ],
                         legendgroup='Other', scalegroup='Other', name='Other',
-                        line_color='mediumpurple')
+                        line_color='lightgrey')
              )
 
     fig.update_traces(box_visible=True, meanline_visible=True)
@@ -54,8 +55,9 @@ def ageGender_chart(df):
 def ethnicity_chart(df):
     base = alt.Chart(df).mark_arc(innerRadius=50).encode(
         theta="Total",
-        color=alt.Color("ethnicity:N", title="Ethnicity"))
-        
+        color=alt.Color("ethnicity:N", title="Ethnicity").scale(scheme="lighttealblue")
+    )
+
     st.altair_chart(base, use_container_width=True, theme="streamlit")
 
 def race_chart(df):
@@ -63,7 +65,7 @@ def race_chart(df):
     fig = alt.Chart(df).mark_line(point=True).encode(
         x=alt.X("case_month:O").timeUnit("yearmonth").title("Month Year"),
         y="Total:O",
-        color=alt.Color("race:N", title="Race")
+        color=alt.Color("race:N", title="Race").scale(scheme="tealblues")
     ).transform_window(
         rank="rank()",
         sort=[alt.SortField("Total", order="descending")],
@@ -91,7 +93,7 @@ def county_rank(df):
             ).mark_bar().encode(
             alt.Y('res_state:N').sort('-x').title('State'),
             alt.X('count:Q').title('Count'),
-            color=alt.Color('res_county', title='County')
+            color=alt.Color('res_county', title='County').scale(scheme="lighttealblue")
             )
 
 
@@ -106,7 +108,7 @@ def county_map(df, df2):
     alt.data_transformers.disable_max_rows()
     
     foreground = alt.Chart(counties).mark_geoshape().encode(
-        color=alt.Color('Total:Q', scale=alt.Scale(domain=[0, max], scheme="pastel1")),
+        color=alt.Color('Total:Q', scale=alt.Scale(domain=[0, max], scheme="lighttealblue")),
         # color=alt.Color('Total:Q', title='# of Vaccinations'),
         # color=alt.value('steelblue'),
         tooltip=['res_state:N', 'res_county:N', 'Total:Q'] 
@@ -142,33 +144,35 @@ def county_map(df, df2):
     st.altair_chart(fig, use_container_width=True, theme="streamlit")
 
 def date_filter(df):
+
+    with st.container(border=True):
     ### Date Filter
-    col1, col2 = st.columns(2)
-    df["case_month"] = pd.to_datetime(df["case_month"])
+        col1, col2 = st.columns(2)
+        df["case_month"] = pd.to_datetime(df["case_month"])
 
-    # startDate = pd.to_datetime(df["case_month"]).min()
-    # endDate = pd.to_datetime(df["case_month"]).max()
+        # startDate = pd.to_datetime(df["case_month"]).min()
+        # endDate = pd.to_datetime(df["case_month"]).max()
 
-    today = date.today()
-    # date_1 = today - timedelta(days=1074)
-    # date_2 = date_1 + timedelta(days=30)
+        today = date.today()
+        # date_1 = today - timedelta(days=1074)
+        # date_2 = date_1 + timedelta(days=30)
 
-    if "my_date1" in st.session_state:
-        if "my_date2" in st.session_state:
-            startDate = st.session_state["my_date1"]
-            endDate = st.session_state["my_date2"]
+        if "my_date1" in st.session_state:
+            if "my_date2" in st.session_state:
+                startDate = st.session_state["my_date1"]
+                endDate = st.session_state["my_date2"]
 
-    if "my_date1" not in st.session_state:
-        if "my_date2" not in st.session_state:
-            startDate = pd.to_datetime('2021/01/01')
-            endDate = pd.to_datetime('2021/05/31')
+        if "my_date1" not in st.session_state:
+            if "my_date2" not in st.session_state:
+                startDate = pd.to_datetime('2021/01/01')
+                endDate = pd.to_datetime('2021/05/31')
 
-    with col1:
-        date1 = pd.to_datetime(st.date_input("Start Date", startDate))
-    with col2:
-        date2 = pd.to_datetime(st.date_input("End Date", endDate))
+        with col1:
+            date1 = pd.to_datetime(st.date_input("Start Date", startDate))
+        with col2:
+            date2 = pd.to_datetime(st.date_input("End Date", endDate))
 
-    df = df[(df["case_month"] >= date1) & (df["case_month"] <= date2)].copy()
+        df = df[(df["case_month"] >= date1) & (df["case_month"] <= date2)].copy()
     return(df, date1, date2)
 
 def sidebar_filters(df):

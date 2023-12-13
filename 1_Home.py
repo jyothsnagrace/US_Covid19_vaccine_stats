@@ -9,10 +9,19 @@ def main():
 
     ### Page Config
     st.set_page_config(page_title=APP_TITLE, page_icon=":mask", layout="wide")
+    st.markdown("""
+        <style>
+            .st-emotion-cache-zt5igj {
+                color: teal;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+        </style>""", unsafe_allow_html=True)
     st.title(f":microbe: {APP_TITLE} :mask:")
     # st.caption(APP_SUB_TITLE)
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
     
+
     col1, col2 = st.columns(2)
 
     with col1:
