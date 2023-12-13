@@ -54,11 +54,14 @@ def ageGender_chart(df):
 
 def ethnicity_chart(df):
     base = alt.Chart(df).mark_arc(innerRadius=50).encode(
-        theta="Total",
+        theta="Total:Q",
         color=alt.Color("ethnicity:N", title="Ethnicity").scale(scheme="lighttealblue")
     )
+    
+    pie = base.mark_arc(outerRadius=120)
+    text = base.mark_text(radius=160, size=20).encode(text="ethnicity:N")
 
-    st.altair_chart(base, use_container_width=True, theme="streamlit")
+    st.altair_chart(pie + text, use_container_width=True, theme="streamlit")
 
 def race_chart(df):
 

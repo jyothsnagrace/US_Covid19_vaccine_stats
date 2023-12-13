@@ -34,25 +34,34 @@ def main():
     race_ct = filtered_df2.groupby(['res_state', 'res_county','case_month','race'])['count'].sum().reset_index(name='Total')
     ethnicity_ct = filtered_df2.groupby(['res_state', 'res_county','case_month','ethnicity'])['count'].sum().reset_index(name='Total')
 
+    race_ct1 = race_ct.groupby(['case_month','race'])['Total'].sum().reset_index(name='Total')
+    ethnicity_ct1 = ethnicity_ct.groupby(['ethnicity'])['Total'].sum().reset_index(name='Total')
+
+
     display_df = filtered_df2.groupby(['res_state', 'res_county','case_month', 'age_group', 'gender', 'race', 'ethnicity'])['count'].sum().reset_index(name='Total')
 
-    # st.write(display_df)
-    # st.write(stateCounty_count.shape)
+    d1 = date1.strftime("%b %Y")
+
+    d2 = date2.strftime("%b %Y")
+
+    statec = ','.join(state)
+    countyc = ','.join(county)
 
     tab1, tab2, tab3 = st.tabs(["Violin Plot", "Bump Chart", "Pie Chart"])
     
+ 
 
     with tab1:
-        st.subheader(f"Violin Plot by Age and Gender")
+        st.subheader(f"Violin Plot by Age and Gender for {d1} to {d2}")
         ageGender_chart(AgeGender_count)
 
     with tab2:
-        st.subheader("Bump Chart by Race over Time")
-        race_chart(race_ct)
+        st.subheader(f"Bump Chart by Race over Time for {statec}, {countyc}")
+        race_chart(race_ct1)
 
     with tab3:
-        st.subheader("Pie Chart by Ethnicity")
-        ethnicity_chart(ethnicity_ct)
+        st.subheader(f"Pie Chart by Ethnicity for {d1} to {d2}")
+        ethnicity_chart(ethnicity_ct1)
 
     ### session_state
 

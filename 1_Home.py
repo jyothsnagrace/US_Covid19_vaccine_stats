@@ -21,6 +21,8 @@ def main():
     # st.caption(APP_SUB_TITLE)
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
     
+    with open('lib/style.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 

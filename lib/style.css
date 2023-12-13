@@ -5,6 +5,14 @@
     border-radius: 5px;
 } */
 
+/* [theme]
+primaryColor="teal"
+backgroundColor="##85b2be"
+secondaryBackgroundColor="##5bafc0"
+textColor="teal"
+font="sans serif" */
+
+
 div.st-emotion-cache-j7qwjs {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /* color: #eb9234; */
@@ -49,7 +57,7 @@ div.stHeadingContainer {
 
 div.st-emotion-cache-16idsys {
     font-family: cursive;
-    color: #eb9234;
+    color: #808080;
     font-size: 20px;;
 }
 
