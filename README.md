@@ -14,7 +14,7 @@ Leela Josna Kona
 * Basic options for users to choose
   * Dataset Date Period
   * US State and County Multiselect Filters
-  * Reads and updates Filter values usng Session State
+  * Maintaining and updating filter values across multiple pages with session state
   * A Home page and Multipage app to categorize the dataset at different hierarchy
      * US State Reports:
        * Display a Covid 19 Vaccination statistics for selected area (US or for specific State or County)
