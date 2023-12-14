@@ -19,8 +19,6 @@ def page_config():
     st.caption(APP_SUB_TITLE)
     st.caption(APP_SUB_TITLE2)
     st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
-  
-    
 
 def session_assign(filtered_df, date1, date2, state, county):
     st.session_state['my_df'] = filtered_df
@@ -28,6 +26,36 @@ def session_assign(filtered_df, date1, date2, state, county):
     st.session_state["my_date2"] = date2
     st.session_state["my_state"] = state
     st.session_state["my_county"] = county
+
+
+def agePeriod_chart(df):
+        fig = alt.Chart(df).mark_line(point=True).encode(
+            x=alt.X("case_month:O").timeUnit("yearmonth").title("Month Year"),
+            y="Total:O",
+            color=alt.Color("age_group:N", title="Age Group").scale(scheme="tealblues")
+        ).transform_window(
+            rank="rank()",
+            sort=[alt.SortField("Total", order="descending")],
+            groupby=["case_month"]
+        ).properties(
+            # title="Bump Chart for Stock Prices",
+            width=600,
+            height=700,
+        ).configure_point(
+        size=150
+        )
+
+        fig2 = alt.Chart(df).mark_line(strokeWidth = 2, point=True).encode(
+                # x='case_month:T',
+                x=alt.X("case_month:T").title("Date"),
+                y='Total:Q',
+                color=alt.Color("age_group:N", title="Age Group")
+            ).configure_point(
+                size=150
+            )
+
+        st.altair_chart(fig2, use_container_width=True, theme="streamlit")
+
 
 def ageGender_chart(df):
     fig = go.Figure()
@@ -39,7 +67,7 @@ def ageGender_chart(df):
     fig.add_trace(go.Violin(x=df['age_group'][ df['gender'] == 'Female' ],
                         y=df['Total'][ df['gender'] == 'Female' ],
                         legendgroup='F', scalegroup='F', name='F',
-                        line_color='lightblue')
+                        line_color='pink')
              )
     fig.add_trace(go.Violin(x=df['age_group'][ df['gender'] == 'Other' ],
                         y=df['Total'][ df['gender'] == 'Other' ],
@@ -68,7 +96,7 @@ def race_chart(df):
     fig = alt.Chart(df).mark_line(point=True).encode(
         x=alt.X("case_month:O").timeUnit("yearmonth").title("Month Year"),
         y="Total:O",
-        color=alt.Color("race:N", title="Race").scale(scheme="tealblues")
+        color=alt.Color("race:N", title="Race")#.scale(scheme="tealblues")
     ).transform_window(
         rank="rank()",
         sort=[alt.SortField("Total", order="descending")],

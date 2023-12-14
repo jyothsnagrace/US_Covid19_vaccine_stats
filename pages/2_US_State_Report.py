@@ -39,7 +39,7 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader(f" COVID-19 Vaccinations by County ")
+        st.subheader(f"COVID-19 Vaccination Coverage Across U.S. Counties")
         county_map(stateCounty_count, state_count)
         
 

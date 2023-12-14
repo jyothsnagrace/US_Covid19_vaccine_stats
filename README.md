@@ -53,11 +53,11 @@ Leela Josna Kona
 
 
 ## Snapshots
-### Main Landing Page
-![main](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/main_v2.png)
+### Landing Page
+![Home](images/1. Home Screen.png)
 
 ### Heatmap - Infections
-![infections_heatmap](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/heatmap_infections.png)
+![US State Report](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/heatmap_infections.png)
 
 ### Heatmap - Vaccinations
 ![vaccinations_heatmap](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/heatmap_vaccinations.png)

@@ -1,5 +1,5 @@
 
-from lib.functions import load_data, date_filter, sidebar_filters, ethnicity_chart, ageGender_chart, race_chart, sidebar_filters2, session_assign, page_config
+from lib.functions import load_data, date_filter, sidebar_filters, ethnicity_chart, ageGender_chart, race_chart, sidebar_filters2, session_assign, page_config, agePeriod_chart
 
 import streamlit as st
 import pandas as pd
@@ -33,6 +33,7 @@ def main():
     AgeGender_count = filtered_df2.groupby(['res_state', 'res_county','case_month', 'age_group', 'gender'])['count'].sum().reset_index(name='Total')
     race_ct = filtered_df2.groupby(['res_state', 'res_county','case_month','race'])['count'].sum().reset_index(name='Total')
     ethnicity_ct = filtered_df2.groupby(['res_state', 'res_county','case_month','ethnicity'])['count'].sum().reset_index(name='Total')
+    AgeGroup_count = AgeGender_count.groupby(['case_month','age_group'])['Total'].sum().reset_index(name='Total')
 
     race_ct1 = race_ct.groupby(['case_month','race'])['Total'].sum().reset_index(name='Total')
     ethnicity_ct1 = ethnicity_ct.groupby(['ethnicity'])['Total'].sum().reset_index(name='Total')
@@ -47,20 +48,37 @@ def main():
     statec = ','.join(state)
     countyc = ','.join(county)
 
-    tab1, tab2, tab3 = st.tabs(["Violin Plot", "Bump Chart", "Pie Chart"])
+    if state:
+        chart_tag = statec + ', ' + countyc
+    else:
+        chart_tag = 'USA'
+
+    tab1, tab2, tab3, tab4 = st.tabs(["Age and Gender Distribution", "Weekly Initiation by Age Group", "Race Dynamics", "Ethnicity Breakdown"])
     
  
 
     with tab1:
-        st.subheader(f"Violin Plot by Age and Gender for {d1} to {d2}")
+        st.subheader(f"Age and Gender Distribution from {d1} to {d2}")
+        caption =""":gray[**NC State Results:** Vaccination coverage was highest in women aged 18–49 years.  
+        Men had lower coverage than women in all age groups.]"""
+        st.markdown(caption)
         ageGender_chart(AgeGender_count)
 
     with tab2:
-        st.subheader(f"Bump Chart by Race over Time for {statec}, {countyc}")
-        race_chart(race_ct1)
+        st.subheader(f"Weekly Initiation by Age group in {chart_tag}")
+        st.caption(f"**NC State Results:** Vaccination coverage was highest for age group 18–49 years.")
+        agePeriod_chart(AgeGroup_count)
 
     with tab3:
-        st.subheader(f"Pie Chart by Ethnicity for {d1} to {d2}")
+        st.subheader(f"Race Dynamics Over Time in {chart_tag}")
+        caption =""":gray[**NC State Results:** Intent to definitely get a COVID-19 vaccine was high in American Indian or Alaska Native (AI/AN).  
+        Whites have higher levels of vaccine hesitancy.]"""
+        st.markdown(caption)
+        race_chart(race_ct1)
+
+    with tab4:
+        st.subheader(f"Ethnicity Breakdown from {d1} to {d2}")
+        st.caption(f"**NC State Results:** Vaccination coverage was highest for non-Hispanic/Laino.")
         ethnicity_chart(ethnicity_ct1)
 
     ### session_state
