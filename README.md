@@ -48,10 +48,10 @@ Leela Josna Kona
 
 
 ## Snapshots
-### Landing Page
+### 1. Landing Page
 ![Home](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/1.%20Home%20Screen.png))
 
-### US State Report
+### 2. US State Report
 ![US State Report](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/2b.%20US%20State%20report.png)
 
  #### Input values saved in Session state
@@ -63,7 +63,7 @@ Leela Josna Kona
  #### US State Report - selected county
  ![US State Report](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/2b.%20US%20State%20report-2.png)
 
-### Detail Reports
+### 3. Detail Reports
  #### Vaccinations - Age and Gender Distribution
  ![Age and Gender Distribution](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/3a.%20Age%20and%20Gender%20Distribution.png)
  
@@ -80,3 +80,4 @@ Leela Josna Kona
 ## Future work
 This Framework can be used at global scale and can include additional virus vaccination data. Adding more criteria in Visualizations can provide understanding of vaccination dynamics.
 This promotes an equitable vaccine distribution and reduces racial and ethnic disparities in vaccination.
+Also, work on the session state capturing sidebar input values across multiple pages.
