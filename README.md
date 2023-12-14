@@ -2,8 +2,13 @@
 # US COVID-19 Vaccination Statistics
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uscovid19vaccine-stats.streamlit.app/)
 
-An Interactive Streamlit App Dashboard to visualize and analyze USA Covid-19 Vaccination stats [Streamlit](https://www.streamlit.io) module .
-You can try [here](https://uscovid19vaccine-stats.streamlit.app/).
+An Interactive Streamlit App Dashboard to visualize and analyze USA Covid-19 Vaccination stats [Streamlit](https://www.streamlit.io) module. You can try [here](https://uscovid19vaccine-stats.streamlit.app/).  
+
+Data from the Centers for Disease Control and Prevention (CDC) collected during Jan 2020 to Dec 2022, were analyzed to assess COVID-19 vaccination, intent for vaccination, and attitudes towards vaccination among sociodemographic categories like Gender, Age group, race and ethnicity across USA at county level.
+
+## Results:
+At anytime Covid 19 Vaccination coverage was highest in women aged 18–49 years. Men had lower coverage than women in all age groups. 
+Intent to definitely get a COVID-19 vaccine was high in non-Hispanic/Laino and Native Hawaiian and other Pacific Island (NH/OPI). While, whites have higher levels of vaccine hesitancy.
 
 ## Author
 
@@ -17,14 +22,15 @@ Leela Josna Kona
   * Maintaining and updating filter values across multiple pages with session state
   * A Home page and Multipage app to categorize the dataset at different hierarchy
      * US State Reports:
-       * Display a Covid 19 Vaccination statistics for selected area (US or for specific State or County)
-       * Draw a Rank Chart with the same selection (state-level or County-level comparisons)
-     * NC Reports:
-       * Draw a Violin Plot of Total Vaccination Count accross Age-Group and Gender
-       * Draw a Bump Chart by Race over Time
-       * Draw a Pie Chart by Ethnicity
+       * Display a COVID-19 Vaccination Coverage Across U.S. Counties in a Geoshape Map
+       * Draw a Rank Chart with the selection (state-level or County-level comparisons)
+     * Detail Reports and North Carolina - level Reports:
+       * Draw a Violin Plot of Total Vaccination Distribution accross Age and Gender
+       * Draw a line chart of Weekly Initiation by Age group in [State], [County]
+       * Draw a Bump Chart by Race over Time in [State], [County]
+       * Draw a Pie Chart by Ethnicity Breakdown for the selected date range
 
-## Data sources and helpful resources
+## Data sources and design
 * Vaccinations data source
   * [Centers for Disease Control and Prevention (CDC)](https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data-with-Ge/n8mc-b4w4/about_data): COVID-19 Case Surveillance Public Use Data with Geography dataset
 * Geographic data
@@ -32,17 +38,6 @@ Leela Josna Kona
   * counties <- alt$topo_feature(vega_data$us_10m$url, "counties")
   * states <- alt$topo_feature(vega_data$us_10m$url, "states")
 
-## Descriptions of objects
-* Geoshape Map
-  * US states and counties map are drawn (Total number of vaccinated)
-* Top Ranked Barplot
-  * States on y-axis are pre-sorted by the Total vaccinated and displayed counties as stacked
-* Violin Plot
-  * For North Carolina State and its selected counties by Age-Group and Gender
-* Bump Chart
-  * For North Carolina State and its selected counties by Race over Time
-* Pie
-  * For North Carolina State and its selected counties by Ethnicity
     
 ## Selected modules used
   * [Streamlit](https://www.streamlit.io)
@@ -80,4 +75,8 @@ Leela Josna Kona
 
   #### Vaccinations - Ethnicity Breakdown
  ![Ethnicity Breakdown](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/3d.%20Ethnicity%20Breakdown.png)
- 
+
+
+## Future work
+This Framework can be used at global scale and can include additional virus vaccination data. Adding more criteria in Visualizations can provide understanding of vaccination dynamics.
+This promotes an equitable vaccine distribution and reduces racial and ethnic disparities in vaccination.
