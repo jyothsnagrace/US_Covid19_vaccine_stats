@@ -54,20 +54,30 @@ Leela Josna Kona
 
 ## Snapshots
 ### Landing Page
-![Home](images/1. Home Screen.png)
+![Home](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/1.%20Home%20Screen.png))
 
-### Heatmap - Infections
-![US State Report](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/heatmap_infections.png)
+### US State Report
+![US State Report](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/2b.%20US%20State%20report.png)
 
-### Heatmap - Vaccinations
-![vaccinations_heatmap](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/heatmap_vaccinations.png)
+ #### Input values saved in Session state
+ ![Session State](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/2a.%20Capturing%20Session%20State%20Values.png)
 
-### Barplot - Vaccinations (Country-level)
-![barplot](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/stackedbar_vaccinations.png)
+ #### US State Report - selected states
+ ![US State Report](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/2c.%20US%20State%20report.png)
 
-### Choropleth - Infections
-![infections_choropleth](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/choropleth_infections.png)
+ #### US State Report - selected county
+ ![US State Report](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/2b.%20US%20State%20report-2.png)
 
-### Choropleth - Vaccinations
-![vaccinations_choropleth](https://github.com/staedi/Streamlit_nCov19/raw/master/samples/choropleth_vaccinations.png)
+### Detail Reports
+ #### Vaccinations - Age and Gender Distribution
+ ![Age and Gender Distribution](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/3a.%20Age%20and%20Gender%20Distribution.png)
+ 
+  #### Vaccinations - Age Group Trend
+ ![Age and Gender Distribution](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/3b.%20Age%20Group%20Trend.png)
 
+  #### Vaccinations - Race Dynamics
+ ![Race Dynamics](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/3c.%20Race%20Dynamics.png)
+
+  #### Vaccinations - Ethnicity Breakdown
+ ![Ethnicity Breakdown](https://github.com/jyothsnagrace/US_Covid19_vaccine_stats/blob/main/images/3d.%20Ethnicity%20Breakdown.png)
+ 
