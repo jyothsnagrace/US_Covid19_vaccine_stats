@@ -76,7 +76,11 @@ def ageGender_chart(df):
              )
 
     fig.update_traces(box_visible=True, meanline_visible=True)
-    fig.update_layout(violinmode='group')
+    fig.update_layout(violinmode='group',
+                      xaxis_title="Age Group",
+                      yaxis_title="Vaccination Count",
+                      legend_title="Gender"
+                     )
 
     st.plotly_chart(fig, use_container_width=True)
 
