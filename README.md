@@ -1,6 +1,6 @@
 
 # US COVID-19 Vaccination Statistics
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uscovid19vaccine-stats.streamlit.app/){:target="_blank"}
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://uscovid19vaccine-stats.streamlit.app/)
 
 An Interactive Streamlit App Dashboard to visualize and analyze USA Covid-19 Vaccination stats [Streamlit](https://www.streamlit.io) module. You can try [here](https://uscovid19vaccine-stats.streamlit.app/).  
 
